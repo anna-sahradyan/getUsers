@@ -23,11 +23,26 @@ const UsersList = () => {
     const pages = [];
     createPages(pages, pagesCount, currentPage)
     const [inputValue, setInputValue] = useState('');
+    const [sorted, setSorted] = useState({sorted: "id", reversed: false});
+    const [sortUsers, setSortUsers] = useState([])
+    const sortById = () => {
+        const usersCopy = [...users];
+        usersCopy.sort((userA, userB) => {
+            if (sorted.reversed) {
+                return userA.id - userB.id
+            }
+            return userB.id - userA.id
+        });
+        setSortUsers(usersCopy)
+        setSorted({ sorted: "id", reversed: !sorted.reversed });
+    }
+    const usersToDisplay = sorted.reversed ? sortUsers : users;
+console.log(sortUsers)
     useEffect(() => {
         dispatch(getUsers(inputValue, currentPage, perPage))
 
     }, [dispatch, currentPage]);
-    console.log(users)
+
     return (
         <>
 
@@ -35,15 +50,17 @@ const UsersList = () => {
                 <ContainerHeader>
                     <Right><Search inputValue={inputValue} setInputValue={setInputValue}
                                    currentPage={currentPage}/></Right>
-                    <Left><span><KeyboardDoubleArrowUpIcon/></span>
-                        <span><KeyboardDoubleArrowDownIcon/></span>
+                    <Left> <span onClick={sortById}>
+               {sorted ? <KeyboardDoubleArrowUpIcon/> : <KeyboardDoubleArrowDownIcon/>}
+                                    </span>
                     </Left>
                 </ContainerHeader>
                 <UserContainer>
-                    {isFetchError &&  <Stack sx={{ width: '100%' }} spacing={2}><Alert severity="error">Server Error!!!</Alert>
-                    </Stack>}
+                    {isFetchError &&
+                        <Stack sx={{width: '100%'}} spacing={2}><Alert severity="error">Server Error!!!</Alert>
+                        </Stack>}
                     <UserContent>
-                        {isFetching === false ? (users?.map(user => <User key={user.id} user={user}/>)) : (
+                        {isFetching === false ? (usersToDisplay?.map(user => <User key={user.id} user={user}/>)) : (
                             <div className='loading'><Loading/></div>)}
                     </UserContent>
                 </UserContainer>
@@ -59,3 +76,4 @@ const UsersList = () => {
 };
 
 export default UsersList;
+

@@ -1,6 +1,6 @@
 import {setUsers, setIsFetching, setFetchError,setUser} from "../redux/userReducer";
 import axios from "axios";
-
+//followers:>1
 export const getUsers = (searchQuery = 'login', currentPage, perPage) => {
     if (searchQuery == '') {
         searchQuery = 'login';
