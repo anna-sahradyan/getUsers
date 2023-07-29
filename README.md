@@ -1,3 +1,3 @@
-` You can search for users using a search function and then sort them.`
+` You can search for users using a search button and then sort them.`
 
 
