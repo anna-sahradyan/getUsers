@@ -24,7 +24,8 @@ const UsersList = () => {
     createPages(pages, pagesCount, currentPage)
     const [inputValue, setInputValue] = useState('');
     const [sorted, setSorted] = useState({sorted: "id", reversed: false});
-    const [sortUsers, setSortUsers] = useState([])
+    const [sortUsers, setSortUsers] = useState([]);
+
     const sortById = () => {
         const usersCopy = [...users];
         usersCopy.sort((userA, userB) => {
@@ -37,9 +38,9 @@ const UsersList = () => {
         setSorted({ sorted: "id", reversed: !sorted.reversed });
     }
     const usersToDisplay = sorted.reversed ? sortUsers : users;
-console.log(sortUsers)
+
     useEffect(() => {
-        dispatch(getUsers(inputValue, currentPage, perPage))
+        dispatch(getUsers(inputValue, currentPage, perPage,usersToDisplay))
 
     }, [dispatch, currentPage]);
 

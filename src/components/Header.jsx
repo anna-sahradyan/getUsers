@@ -10,7 +10,7 @@ const Header = () => {
              <Typography variant={"h4"} style={{
                    margin: "auto",
                    color: "#9B9B9B"
-               }}>  <NavLink to={"/"}> GitHub Users
+               }}>  <NavLink to={"/"}> Go Home
              </NavLink></Typography>
             </HeaderContainer>
 
