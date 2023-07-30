@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React  from 'react';
 import {useDispatch} from "react-redux";
 import {setCurrentPage} from "../redux/userReducer";
 import {getUsers} from "../actions/users";
@@ -11,17 +11,15 @@ import SearchIcon from '@mui/icons-material/Search';
 const Search = ({setInputValue, inputValue}) => {
     const dispatch = useDispatch();
     const handlerSearch = () => {
-        dispatch(setCurrentPage(1));
+        setInputValue('');
         if (inputValue) {
-            dispatch(getUsers(inputValue));
-
+            dispatch(setCurrentPage(1));
+            dispatch(getUsers(inputValue))
         }
         setInputValue('');
 
     }
-    useEffect(() => {
-        dispatch(getUsers(inputValue))
-    }, [dispatch]);
+
     return (
         <>
             <Box

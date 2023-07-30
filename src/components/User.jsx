@@ -15,7 +15,7 @@ const User = ({user}) => {
 
             <div className={"item"} onClick={handleUserClick}>
                 <div>
-                    <div className="image"><img src={user.avatar_url} className="rounded" width="155"/></div>
+                    <div className="image"><img src={user.avatar_url} className="rounded" width="155" alt={user.name}/></div>
                     <div className="">
                         <h4 className="">{user.login} <FcApproval/></h4>
                         <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">

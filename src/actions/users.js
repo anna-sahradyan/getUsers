@@ -2,7 +2,7 @@ import {setUsers, setIsFetching, setFetchError,setUser} from "../redux/userReduc
 import axios from "axios";
 //followers:>1
 export const getUsers = (searchQuery = 'login', currentPage, perPage) => {
-    if (searchQuery == '') {
+    if (searchQuery === '') {
         searchQuery = 'login';
     }
     return async (dispatch) => {
@@ -15,9 +15,6 @@ https://api.github.com/search/users?q=${searchQuery}&sort=followers&per_page=${p
         } catch (e) {
             dispatch(setFetchError(true))
             dispatch(setIsFetching(false));
-            setTimeout(() => {
-                dispatch(setFetchError(false))
-            }, 2000)
         }
 
 
@@ -31,7 +28,6 @@ export const getUserById = (userId) => {
             dispatch(setIsFetching(true));
             const response = await axios.get(`https://api.github.com/users/${userId}`);
             dispatch(setUser(response.data));
-            console.log(response.data)
 
         } catch (e) {
         } finally {

@@ -8,7 +8,6 @@ const Home = () => {
         <>
             <Container>
                 <UsersList/>
-
             </Container>
         </>
     );

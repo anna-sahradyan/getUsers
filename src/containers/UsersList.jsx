@@ -25,7 +25,7 @@ const UsersList = () => {
     const [inputValue, setInputValue] = useState('');
     const [sorted, setSorted] = useState({sorted: "id", reversed: false});
     const [sortUsers, setSortUsers] = useState([]);
-
+//?Sort part
     const sortById = () => {
         const usersCopy = [...users];
         usersCopy.sort((userA, userB) => {
@@ -38,7 +38,7 @@ const UsersList = () => {
         setSorted({ sorted: "id", reversed: !sorted.reversed });
     }
     const usersToDisplay = sorted.reversed ? sortUsers : users;
-
+//?to dispatch an action to the store.
     useEffect(() => {
         dispatch(getUsers(inputValue, currentPage, perPage,usersToDisplay))
 
@@ -52,7 +52,7 @@ const UsersList = () => {
                     <Right><Search inputValue={inputValue} setInputValue={setInputValue}
                                    currentPage={currentPage}/></Right>
                     <Left> <span onClick={sortById}>
-               {sorted ? <KeyboardDoubleArrowUpIcon/> : <KeyboardDoubleArrowDownIcon/>}
+               {sorted.reversed  ? <KeyboardDoubleArrowUpIcon/> : <KeyboardDoubleArrowDownIcon/>}
                                     </span>
                     </Left>
                 </ContainerHeader>

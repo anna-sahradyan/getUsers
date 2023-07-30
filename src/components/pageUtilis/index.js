@@ -17,4 +17,5 @@ export const createPages = (pages, pagesCount, currentPage) => {
 
         }
     }
+    return pages;
 }

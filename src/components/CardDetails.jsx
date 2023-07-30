@@ -24,8 +24,6 @@ const CardDetails = () => {
         return <div>User not found.</div>;
     }
 
-    console.log(user);
-
     return (
         <>
             <Container>
